@@ -1,21 +1,24 @@
 pair = input('Pair: ').upper()
-def calculate_pips(entry, stop_loss):
-	pips = float(entry - stop_loss)
-	pip_value = float((entry - stop_loss) * 10000)
-	return pip_value
+entry = float(input('Entry: '))
+stop_loss = float(input('Stop loss: '))
+lot_size = float(input('Lot size: '))
+pip_value = 10
 
-def calculate_risk_dollars(pips, lot_size, pip_value):
-	dollar_risk = (pips * lot_size * pip_value)
+
+def calculate_pips(entry, stop_loss):
+	pips = (entry - stop_loss) * 10000
+	return pips
+
+def calculate_risk_dollars(pips, lot_size):
+	dollar_risk = pips * lot_size * pip_value
 	return dollar_risk
 
-def display_summary(pair, pips_value, dollar_risk):
+def display_summary(pair, pips, dollars):
 	print('---- Trade Risk Calculator ----')
-	print(f'Pair; {pair}')
-	print(f'Risk in pips: {pips_value}')
-	print(f'Risk in Dollars: {dollar_risk}')
+	print('Pips:', pips)
+	print('Pair:', pair)
+	print('Dollars:', dollars)
 
-calculate_pips()
-calculate_risk_dollars()
-display_summary()
-
-
+pips = calculate_pips(entry, stop_loss)
+dollars = calculate_risk_dollars(pips, lot_size)
+display_summary(pair, pips, dollars)
